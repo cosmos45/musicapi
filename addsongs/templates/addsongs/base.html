@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+<title>Songs</title>
+
+{% block content %}
+<div class="jumbotron container">
+    <h2 class="songspace">Search for Songs <input class="addsongs_search" size="8" type="text" placeholder="Search..">
+    </h2>
+</div>
+
+
+
+{% for i in song %}
+
+
+    <div class="mcard">
+
+        <div class="container">
+            <div class="card">
+<button></button>
+                <img src="/media/{{i.image}}" alt="">
+                <div class="container">
+                    <h4><b>{{i.name}}</b></h4>
+                    <p>{{i.singer}}</p>
+
+
+                          <a href="/addsongs/addsongs/{{i.song_id}}"><button>Listen Song</button></a>
+
+
+
+                </div>
+
+
+
+        </div>
+    </div>
+    </div>
+
+<br>
+
+<br>
+
+
+
+
+{% endfor %}
+
+
+{% endblock %}

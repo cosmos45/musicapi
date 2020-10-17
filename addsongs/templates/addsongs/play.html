@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+<title>Play</title>
+
+{% block content %}
+{% if message %}
+<script>
+    swal({
+  title: "{{message}}",
+  button: "Ok",
+});
+</script>
+{% endif %}
+<div class="jumbotron container">
+    <h2 class="songspace">Search for Songs <input class="addsongs_search" size="8" type="text" placeholder="Search..">
+    </h2>
+</div>
+ <div class="container">
+     <div class="row">
+         <div class="col-md-4">
+
+             <img src="/media/{{song.image}}" alt="">
+         </div>
+            <div class="col-md-8">
+                <h2 style="font-weight: 550;padding-left: 300px;">{{song.name}}</h2>
+                <h2 style="font-weight: 250;padding-left: 300px;">{{song.singer}}</h2>
+                <h2 style="font-weight: 250;padding-left: 300px;">{{song.album}}</h2>
+                <audio controls style="padding-top: 10%; margin-left: 250px; ">
+                <source src="/media/{{song.song}}" type="audio/mp3">
+                </audio>
+                  <div style="margin-bottom: 10px;margin-left: 70%;  ">
+            <a href="/media/{{song.song}}" download><button class="btn btn-outline-danger">Download Song</button></a>
+        </div>
+                <br>
+                <form action="/playlists/playlists/" method="POST">
+                    {% csrf_token %}
+                <input type="hidden" name="video_id" value="{{song.song_id}}">
+                <button type="submit" class="btn btn-outline-danger" style="margin-left: 40%;">+ Add to Playlist</button>
+                </form>
+
+         </div>
+     </div>
+ </div>
+
+{% endblock %}
+
+
+
+
+
+
+
